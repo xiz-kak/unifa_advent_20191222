@@ -20,5 +20,5 @@ jobs:
         REMOTE_DIR: unifa_advent_20191222 # ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
         METHOD: sftp                               # ftp (default) / sftp
         PORT: 22                                   # ftp -> 21 (default) / sftp -> 22
-        ARGS: --delete                             # lftpのarguments
+        ARGS: --delete --verbose                            # lftpのarguments
         # その他変数の詳細は https://github.com/marketplace/actions/ftp-deploy へ
