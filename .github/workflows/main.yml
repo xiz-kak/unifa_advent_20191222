@@ -17,7 +17,7 @@ jobs:
         FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
         FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}  # 環境変数：FTPパスワード
-        REMOTE_DIR: www/unifa_advent_20191222 # ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
+        REMOTE_DIR: unifa_advent_20191222 # ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
         METHOD: sftp                               # ftp (default) / sftp
         PORT: 22                                   # ftp -> 21 (default) / sftp -> 22
         ARGS: --delete                             # lftpのarguments
