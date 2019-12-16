@@ -18,4 +18,7 @@ jobs:
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}  # 環境変数：FTPパスワード
         REMOTE_DIR: ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
-        ARGS: --delete                             # lftpのarguments。詳細は https://github.com/marketplace/actions/ftp-deploy
+        METHOD: sftp                               # ftp (default) / sftp
+        PORT: 22                                   # ftp -> 21 (default) / sftp -> 22
+        ARGS: --delete                             # lftpのarguments
+        # その他変数の詳細は https://github.com/marketplace/actions/ftp-deploy へ
