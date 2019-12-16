@@ -13,6 +13,9 @@ jobs:
     - uses: actions/checkout@v2                    # 仮想環境にrepositoryをチェックアウトするおまじない。デフォルトは `master` ブランチ。
     - name: FTP-To-Sakura                          # job stepの名前。ログに出力される。わかればなんでも良さそう。
       uses: SamKirkland/FTP-Deploy-Action@2.0.0    # FTP-Deploy-Action というサーバーにFTPするアクションを使わせてもらいます。
+      with:
+        method: sftp
+        port: 22
       env:
         FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
         FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
