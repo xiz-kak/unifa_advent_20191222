@@ -21,8 +21,8 @@ jobs:
       # run: lftp sftp://ichimaruenji:$FTP_PASSWORD@ichimaruenji.sakura.ne.jp -e "set net:max-retries 1; set net:reconnect-interval-base 10; mirror -v -R -x .git . .; quit"
       # run: curl -u ichimaruenji:$FTP_PASSWORD --ftp-ssl --ftp-pasv -T index_2.html ftp://ichimaruenji.sakura.ne.jp:21/www/
       env:
-        FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
-        FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
+        FTP_SERVER: ae111.secure.ne.jp # ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
+        FTP_USERNAME: ae111daixg_wh01 # ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}  # 環境変数：FTPパスワード
         # REMOTE_DIR: /home/ichimaruenji/www/unifa_advent_20191222 # ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
         # METHOD: sftp                               # ftp (default) / sftp
