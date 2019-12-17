@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest                         # jobを実行する仮想環境。 `windows` や `macOS` も選択可能。
     steps:
     - uses: actions/checkout@v2                    # 仮想環境にrepositoryをチェックアウトするおまじない。デフォルトは `master` ブランチ。
-    - name: install lftp
-      run: sudo apt-get update && sudo apt-get install -y lftp
+    # - name: install lftp
+    #   run: sudo apt-get update && sudo apt-get install -y lftp
     - name: FTP-To-Sakura                          # job stepの名前。ログに出力される。わかればなんでも良さそう。
-      # uses: SamKirkland/FTP-Deploy-Action@2.0.0    # FTP-Deploy-Action というサーバーにFTPするアクションを使わせてもらいます。
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0    # FTP-Deploy-Action というサーバーにFTPするアクションを使わせてもらいます。
       # run: lftp ftp://ichimaruenji.sakura.ne.jp:21 -u ichimaruenji,$FTP_PASSWORD -e "set net:max-retries 10;set ftp:ssl-allow no; mirror -v -R -x .git . .; quit"
       # run: lftp sftp://ichimaruenji.sakura.ne.jp:22 -u ichimaruenji,$FTP_PASSWORD -e "set net:max-retries 10; mirror -v -R -x .git . .; quit"
       # run: lftp -d -e "set ftp:passive-mode on;  set ftp:ssl-auth TLS;   set ftp:ssl-force true;   set ftp:ssl-allow yes;   set ftp:ssl-protect-list yes;   set ftp:ssl-protect-data yes;   set ftp:ssl-protect-fxp yes;  set ssl:verify-certificate no;  open -u ichimaruenji,$FTP_PASSWORD ftp://ichimaruenji.sakura.ne.jp ;   mirror     --reverse     --delete     --only-newer     --dry-run     --verbose . /home/ichimaruenji/www;   exit"
       # run: lftp sftp://ichimaruenji:$FTP_PASSWORD@ichimaruenji.sakura.ne.jp -e "set net:max-retries 1; set net:reconnect-interval-base 10; mirror -v -R -x .git . .; quit"
-      run: curl -u ichimaruenji:$FTP_PASSWORD --ftp-ssl --ftp-pasv -T index_2.html ftp://ichimaruenji.sakura.ne.jp:21/www/
+      # run: curl -u ichimaruenji:$FTP_PASSWORD --ftp-ssl --ftp-pasv -T index_2.html ftp://ichimaruenji.sakura.ne.jp:21/www/
       env:
-        # FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
-        # FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
+        FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
+        FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}  # 環境変数：FTPパスワード
         # REMOTE_DIR: /home/ichimaruenji/www/unifa_advent_20191222 # ${{ secrets.REMOTE_DIR }}      # 環境変数：サーバーのディレクトリのパス
         # METHOD: sftp                               # ftp (default) / sftp
