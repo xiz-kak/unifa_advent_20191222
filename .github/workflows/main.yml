@@ -17,7 +17,7 @@ jobs:
       # uses: SamKirkland/FTP-Deploy-Action@2.0.0    # FTP-Deploy-Action というサーバーにFTPするアクションを使わせてもらいます。
       # run: lftp ftp://ichimaruenji.sakura.ne.jp:21 -u ichimaruenji,$FTP_PASSWORD -e "set net:max-retries 10;set ftp:ssl-allow no; mirror -v -R -x .git . .; quit"
       # run: lftp sftp://ichimaruenji.sakura.ne.jp:22 -u ichimaruenji,$FTP_PASSWORD -e "set net:max-retries 10; mirror -v -R -x .git . .; quit"
-      run: lftp -d -e "set ftp:passive-mode on;  set ftp:ssl-auth TLS;   set ftp:ssl-force true;   set ftp:ssl-allow yes;   set ftp:ssl-protect-list yes;   set ftp:ssl-protect-data yes;   set ftp:ssl-protect-fxp yes;   open -u ichimaruenji,$FTP_PASSWORD -p 22 ichimaruenji.sakura.ne.jp ;   mirror     --reverse     --delete     --only-newer     --dry-run     --verbose . /home/ichimaruenji/www;   exit"
+      run: lftp -d -e "set ftp:passive-mode on;  set ftp:ssl-auth TLS;   set ftp:ssl-force true;   set ftp:ssl-allow yes;   set ftp:ssl-protect-list yes;   set ftp:ssl-protect-data yes;   set ftp:ssl-protect-fxp yes;  set ssl:verify-certificate no;  open -u ichimaruenji,$FTP_PASSWORD ichimaruenji.sakura.ne.jp ;   mirror     --reverse     --delete     --only-newer     --dry-run     --verbose . /home/ichimaruenji/www;   exit"
       # run: lftp sftp://ichimaruenji:$FTP_PASSWORD@ichimaruenji.sakura.ne.jp -e "set net:max-retries 1; set net:reconnect-interval-base 10; mirror -v -R -x .git . .; quit"
       env:
         # FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
