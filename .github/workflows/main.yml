@@ -15,7 +15,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y lftp
     - name: FTP-To-Sakura                          # job stepの名前。ログに出力される。わかればなんでも良さそう。
       # uses: SamKirkland/FTP-Deploy-Action@2.0.0    # FTP-Deploy-Action というサーバーにFTPするアクションを使わせてもらいます。
-      run: lftp ftp://ichimaruenji.sakura.ne.jp:21 -u ichimaruenji,$FTP_PASSWORD -e "set ftp:ssl-allow no; mirror -v -R . .; quit"    
+      run: lftp ftp://ichimaruenji.sakura.ne.jp:21 -u ichimaruenji,$FTP_PASSWORD -e "set ftp:ssl-allow no; mirror -v --no-symlinks -R . .; quit"    
       env:
         # FTP_SERVER: ichimaruenji.sakura.ne.jp  # ${{ secrets.FTP_SERVER }}      # 環境変数：レンタルサーバーのパス
         # FTP_USERNAME: ichimaruenji # ${{ secrets.FTP_USERNAME }}  # 環境変数：FTPユーザー名
